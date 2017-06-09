@@ -15,6 +15,11 @@ phases:
   build:
     commands:
       - chalice package dist
+  post_build:
+    commands:
+      # deploy os here
+      # seems too bad to me
+      - aws lambda update-function-code --function-name $LAMBDA --zip-file fileb://lambdas/$LAMBDA/dist/deployment.zip
 artifacts:
   files:
     - '$LAMBDA/dist/deployment.zip'

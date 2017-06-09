@@ -1,0 +1,25 @@
+version: 0.2
+
+env:
+  variables:
+    # that should be overriden during build
+    LAMBDA: "default"
+phases:
+  install:
+    commands:
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - cd "lambdas/$LAMBDA"
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - coverage run --source=. -m unittest discover
+  post_build:
+    commands:
+      - coverage xml --ignore-errors
+artifacts:
+  files:
+    - "$LAMBDA/coverage.xml"
+  discard-paths: yes
+  base-directory: 'lambdas'

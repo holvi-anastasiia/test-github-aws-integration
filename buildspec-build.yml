@@ -1,0 +1,22 @@
+version: 0.2
+
+env:
+  variables:
+    # that should be overriden during build
+    LAMBDA: "default"
+phases:
+  install:
+    commands:
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - cd "lambdas/$LAMBDA"
+      - mkdir -p dist
+  build:
+    commands:
+      - chalice package dist
+artifacts:
+  files:
+    - '$LAMBDA/dist/deployment.zip'
+  discard-paths: yes
+  base-directory: 'lambdas'

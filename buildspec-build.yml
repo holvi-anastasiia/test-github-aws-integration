@@ -25,3 +25,5 @@ artifacts:
     - '$LAMBDA/dist/deployment.zip'
   discard-paths: yes
   base-directory: 'lambdas'
+
+  

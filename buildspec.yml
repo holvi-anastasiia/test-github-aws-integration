@@ -14,9 +14,9 @@ phases:
   build:
     commands:
       - 'cd lambdas/$LAMBDA && coverage run --source=. -m unittest discover'
+      - coverage xml --ignore-errors
   post_build:
     commands:
-      - coverage xml --ignore-errors
       - 'aws sns publish --topic-arn arn:aws:sns:eu-west-1:072560318001:test-lambda-ci-cd --message "{\"buildId\": \"$CODEBUILD_BUILD_ID\"}"'
 artifacts:
   files:

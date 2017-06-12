@@ -10,7 +10,7 @@ phases:
       - pip install -r requirements.txt
   pre_build:
     commands:
-      - cd "lambdas/$LAMBDA"
+      - "cd lambdas/$LAMBDA"
       - pip install -r requirements.txt
   build:
     commands:

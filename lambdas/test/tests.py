@@ -9,6 +9,7 @@ HTTP_OK_RESPONSE = 200
 class TestAppTest(unittest.TestCase):
 
     def request_lambda(self):
+        # test comment for triggering build on commit
         event = {
             'requestContext': {
                 'resourcePath': '/',

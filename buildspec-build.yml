@@ -8,10 +8,13 @@ phases:
   install:
     commands:
       - pip install -r requirements.txt
+      - cd "lambdas/$LAMBDA"
+      - pip install -r requirements.txt
+      - mkdir -p dist
   pre_build:
     commands:
-      - cd "lambdas/$LAMBDA"
-      - mkdir -p dist
+      - coverage run --source=. -m unittest discover
+      - coverage xml --ignore-errors
   build:
     commands:
       - chalice package dist
@@ -23,7 +26,8 @@ phases:
 artifacts:
   files:
     - '$LAMBDA/dist/deployment.zip'
+    - "$LAMBDA/coverage.xml"
   discard-paths: yes
   base-directory: 'lambdas'
 
-  
+

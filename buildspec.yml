@@ -2,7 +2,6 @@ version: 0.2
 
 env:
   variables:
-    # that should be overriden during build
     LAMBDA: "default"
     SNS_TOPIC_ARN: arn:aws:sns:eu-west-1:072560318001:test-lambda-ci-cd
 phases:

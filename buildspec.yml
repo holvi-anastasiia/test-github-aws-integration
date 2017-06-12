@@ -10,11 +10,10 @@ phases:
       - pip install -r requirements.txt
   pre_build:
     commands:
-      - "cd lambdas/$LAMBDA"
-      - pip install -r requirements.txt
+      - 'cd lambdas/$LAMBDA && pip install -r requirements.txt'
   build:
     commands:
-      - coverage run --source=. -m unittest discover
+      - 'cd lambdas/$LAMBDA && coverage run --source=. -m unittest discover'
   post_build:
     commands:
       - coverage xml --ignore-errors

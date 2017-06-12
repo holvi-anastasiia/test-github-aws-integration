@@ -20,6 +20,6 @@ phases:
       - 'aws sns publish --topic-arn arn:aws:sns:eu-west-1:072560318001:test-lambda-ci-cd --message "{\"buildId\": \"$CODEBUILD_BUILD_ID\"}"'
 artifacts:
   files:
-    - "$LAMBDA/coverage.xml"
+    - '**/coverage.xml'
   discard-paths: yes
   base-directory: 'lambdas'

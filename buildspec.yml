@@ -13,6 +13,7 @@ phases:
       - 'cd lambdas/$LAMBDA && pip install -r requirements.txt'
   build:
     commands:
+      - 'ls -la'
       - 'cd lambdas/$LAMBDA && coverage run --source=. -m unittest discover'
       - coverage xml --ignore-errors
   post_build:

@@ -16,8 +16,6 @@ phases:
       - 'coverage run --source=. -m unittest discover'
       - 'mkdir -p dist'
       - 'chalice package dist'
-      - 'ls -la'
-      - 'pwd'
       - 'aws lambda update-function-code --function-name $LAMBDA --zip-file fileb://dist/deployment.zip'
   post_build:
     commands:

@@ -14,12 +14,9 @@ phases:
   build:
     commands:
       - 'coverage run --source=. -m unittest discover'
-      - coverage xml --ignore-errors
+      - 'mkdir -p dist'
+      - 'chalice package dist'
+      - 'aws lambda update-function-code --function-name $LAMBDA --zip-file fileb://dist/deployment.zip'
   post_build:
     commands:
       - 'aws sns publish --topic-arn arn:aws:sns:eu-west-1:072560318001:test-lambda-ci-cd --message "{\"buildId\": \"$CODEBUILD_BUILD_ID\"}"'
-artifacts:
-  files:
-    - '**/coverage.xml'
-  discard-paths: yes
-  base-directory: 'lambdas'

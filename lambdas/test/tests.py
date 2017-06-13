@@ -26,5 +26,5 @@ class TestAppTest(unittest.TestCase):
     def test_response(self):
         response = self.request_lambda()
         self.assertEqual(
-            response['statusCode'], HTTP_OK_RESPONSE)  
+            response['statusCode'], HTTP_OK_RESPONSE)
     
